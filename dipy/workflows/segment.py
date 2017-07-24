@@ -281,9 +281,9 @@ def recognize_bundles_flow(streamline_files, model_bundle_files,
             #     os.makedirs(os.path.dirname(sf_bundle_file))
 
             recognized_tractogram = nib.streamlines.Tractogram(
-                recognized_bundle)
-            recognized_trkfile = nib.streamlines.TrkFile(recognized_tractogram)
-            nib.streamlines.save(recognized_trkfile, sf_bundle_file)
+                recognized_bundle, affine_to_rasmm=model_trkfile.affine)
+            #recognized_trkfile = nib.streamlines.TrkFile(recognized_tractogram)
+            nib.streamlines.save(recognized_tractogram, sf_bundle_file)
 
             np.save(sf_bundle_labels, np.array(rb.labels))
 
